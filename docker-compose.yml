@@ -6,9 +6,10 @@ services:
     container_name: mogodb
     image: mongo:4.0
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "example"
+    ports:
+      - "27017:27017" # Map 8000 to 8000 of our docker image
   app:
     restart: always
     container_name: marketapi
@@ -16,9 +17,9 @@ services:
     depends_on:
       - mongodb
     environment:
-      - UDEV= 1
-      - ME_CONFIG_MONGODB_ADMINUSERNAME= root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD= example
+      UDEV: "1"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "root"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "example"
     ports:
       - "7000:7000" # Map 8000 to 8000 of our docker image
     privileged: true
