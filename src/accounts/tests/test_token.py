@@ -1,9 +1,7 @@
 from rest_framework.test import APIRequestFactory, APITestCase
-from django.contrib.auth import get_user_model
 from rest_framework.reverse import reverse
 from accounts.views import TokenAPI
 from rest_framework import status
-import json
 from accounts.serializers import UserSerializer
 
 

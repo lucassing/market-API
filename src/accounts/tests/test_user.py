@@ -76,15 +76,3 @@ class UserTestCase(APITestCase):
         with self.assertRaises(ObjectDoesNotExist):
             get_user_model().objects.get(id=self.test_user.id)
         self.assertTrue(status.is_success(response.status_code))
-
-
-# URL pattern: ^users/$ Name: 'user-list'
-# URL pattern: ^users/{pk}/$ Name: 'user-detail'
-# URL pattern: ^accounts/$ Name: 'account-list'
-# URL pattern: ^accounts/{pk}/$ Name: 'account-detail'
-
-# data = {'name': 'DabApps'}
-# response = self.client.post(url, data, format='json')
-# self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-# self.assertEqual(Account.objects.count(), 1)
-# self.assertEqual(Account.objects.get().name, 'DabApps')

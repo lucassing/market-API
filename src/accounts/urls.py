@@ -7,7 +7,7 @@ router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('token-auth/', TokenAPI.as_view(), name='api_token_auth')
+    path('token-auth/', TokenAPI.as_view(), name='api_token_auth'),
 ]
 
 urlpatterns += router.urls
