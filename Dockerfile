@@ -11,8 +11,8 @@ RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
 
 RUN mkdir /market-API
-WORKDIR /src
-COPY ./ /market-API
+COPY ./src /market-API
+WORKDIR /market-API
 
 RUN export PYTHONPATH='/usr/lib/python3/dist-packages'
 ENV PYTHONPATH='/usr/lib/python3/dist-packages'

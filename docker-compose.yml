@@ -20,15 +20,22 @@ services:
       UDEV: "1"
       ME_CONFIG_MONGODB_ADMINUSERNAME: "root"
       ME_CONFIG_MONGODB_ADMINPASSWORD: "example"
+      DJANGO_SUPERUSER_PASSWORD: '123456'
+      DJANGO_SUPERUSER_EMAIL: 'test@email.com'
+      DJANGO_SUPERUSER_USERNAME: 'root'
     ports:
       - "7000:7000" # Map 8000 to 8000 of our docker image
     privileged: true
     volumes:
-      - ./src:/src # Map ./app directory en docker app folder
+      - ./src:/market-API # Map ./app directory en docker app folder
     cap_add:
       - SYS_ADMIN
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:7000 --settings=api.settings"
+      sh -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py custom_create_superuser &&
+      python manage.py runserver 0.0.0.0:7000 --settings=api.settings"
 
 
 
