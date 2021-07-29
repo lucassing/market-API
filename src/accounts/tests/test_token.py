@@ -9,7 +9,8 @@ class TokenAPITestCase(APITestCase):
     test_user = None
     user_credentials = {'username': 'testingUser',
                         'password': 'testingPassword',
-                        'email': 'lucas@gmail.com'}
+                        'email': 'lucas@gmail.com',
+                        'is_staff': True}
 
     @classmethod
     def setUpTestData(cls):

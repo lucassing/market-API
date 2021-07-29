@@ -1,10 +1,11 @@
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 from .serializers import UserSerializer
 
+User = get_user_model()
 
 class UserViewSet(ModelViewSet):
     """List, Create, Update, Retrieve, and Delete a user"""
