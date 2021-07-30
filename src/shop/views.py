@@ -80,6 +80,11 @@ class BasketItemList(generics.ListAPIView):
 
 
 class BasketItemDetails(generics.RetrieveUpdateDestroyAPIView):
+    """Retrieves, Update, Destroy BasketItem
+
+     **AUTHENTICATION REQUIRED**
+     """
     queryset = ItemBasket.objects.all()
     serializer_class = ItemBasketSerializer
-
+    authentication_classes = [TokenAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]

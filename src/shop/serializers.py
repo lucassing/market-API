@@ -32,12 +32,25 @@ class ItemBasketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ItemBasket
-        fields = "__all__"
+        fields = ["basket", 'product', 'qty']
+
+    def validate(self, data):
+        if data['product'].stock < data['qty']:
+            raise serializers.ValidationError("Not enough stock!")
+        return data
+
+    def validate_qty(self, value):
+        """
+        Check that qty is valid
+        """
+        if value == 0:
+            raise serializers.ValidationError("Qty must be more than 0")
+        return value
 
     def create(self, validated_data):
         """Creates a new basket object for the user the first time it adds an Item to it"""
         validated_data['basket'] = \
-        Basket.objects.get_or_create(user=self.context["request"].user)[0]
+            Basket.objects.get_or_create(user=self.context["request"].user)[0]
         return super().create(validated_data)
 
 
