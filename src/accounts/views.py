@@ -8,13 +8,21 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 class UserViewSet(ModelViewSet):
-    """List, Create, Update, Retrieve, and Delete a user"""
+    """List, Create, Update, Retrieve, and Delete a user
+
+    *
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class TokenAPI(ObtainAuthToken):
-    """Creates or retrieves the Token for a given user"""
+    """Creates or retrieves the Token for a given user
+
+    ## Receive the username and Password retrieves a Token
+
+    ### The retrieved token should be used for all request, adding it to the authorization field in the Header
+    """
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,

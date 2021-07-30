@@ -4,8 +4,7 @@ from rest_framework.authentication import TokenAuthentication, \
     BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Category, Product, Basket, ItemBasket
-from rest_framework import generics, status
-from rest_framework.exceptions import NotFound
+from rest_framework import generics
 
 
 class CategoryCreate(generics.CreateAPIView):
