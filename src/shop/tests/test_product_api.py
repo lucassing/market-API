@@ -87,7 +87,7 @@ class ProductAPITestCase(APITestCase):
             Product.objects.get(id=self.product.id)
         self.assertTrue(status.is_success(response.status_code))
 
-    def test_fail_unauthenticate_product_create(self):
+    def test_fail_unauthenticated_product_create(self):
         """
         Test response 401_UNAUTHORIZED when no credentials are provided
         :return:
