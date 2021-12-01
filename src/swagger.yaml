@@ -1,0 +1,589 @@
+swagger: '2.0'
+info:
+  title: Market API
+  description: Simple and convenient market!
+  termsOfService: https://github.com/lucassing/
+  contact:
+    email: singlucasmartin@gmail.com
+  license:
+    name: BSD License
+  version: v1
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /accounts/token-auth/:
+    post:
+      operationId: accounts_token-auth_create
+      summary: Creates or retrieves the Token for a given user
+      description: |-
+        ## Receive the username and Password retrieves a Token
+
+        ### The retrieved token should be used for all request, adding it to the authorization field in the Header
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/AuthToken'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/AuthToken'
+      tags:
+        - accounts
+    parameters: []
+  /accounts/users/:
+    get:
+      operationId: accounts_users_list
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+        - accounts
+    post:
+      operationId: accounts_users_create
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - accounts
+    parameters: []
+  /accounts/users/{id}/:
+    get:
+      operationId: accounts_users_read
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - accounts
+    put:
+      operationId: accounts_users_update
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - accounts
+    patch:
+      operationId: accounts_users_partial_update
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - accounts
+    delete:
+      operationId: accounts_users_delete
+      summary: List, Create, Update, Retrieve, and Delete a user
+      description: '*'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - accounts
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this user.
+        required: true
+        type: integer
+  /shop/basket/:
+    get:
+      operationId: shop_basket_list
+      summary: List all items in the user's basket
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Basket'
+      tags:
+        - shop
+    parameters: []
+  /shop/basket/add_item/:
+    post:
+      operationId: shop_basket_add_item_create
+      summary: Add a new item to the user's basket
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      tags:
+        - shop
+    parameters: []
+  /shop/basket/item/{id}/:
+    get:
+      operationId: shop_basket_item_read
+      summary: Retrieves, Update, Destroy BasketItem
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      tags:
+        - shop
+    put:
+      operationId: shop_basket_item_update
+      summary: Retrieves, Update, Destroy BasketItem
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      tags:
+        - shop
+    patch:
+      operationId: shop_basket_item_partial_update
+      summary: Retrieves, Update, Destroy BasketItem
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ItemBasket'
+      tags:
+        - shop
+    delete:
+      operationId: shop_basket_item_delete
+      summary: Retrieves, Update, Destroy BasketItem
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - shop
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this item basket.
+        required: true
+        type: integer
+  /shop/categories/:
+    get:
+      operationId: shop_categories_list
+      summary: List categories
+      description: '-'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+      tags:
+        - shop
+    parameters: []
+  /shop/categories/new/:
+    post:
+      operationId: shop_categories_new_create
+      summary: Creates a category
+      description: '*'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Category'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Category'
+      tags:
+        - shop
+    parameters: []
+  /shop/product/{id}/:
+    get:
+      operationId: shop_product_read
+      summary: Retrieves, Update, Destroy Product
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - shop
+    put:
+      operationId: shop_product_update
+      summary: Retrieves, Update, Destroy Product
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - shop
+    patch:
+      operationId: shop_product_partial_update
+      summary: Retrieves, Update, Destroy Product
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - shop
+    delete:
+      operationId: shop_product_delete
+      summary: Retrieves, Update, Destroy Product
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - shop
+    parameters:
+      - name: id
+        in: path
+        description: A unique integer value identifying this product.
+        required: true
+        type: integer
+  /shop/products/:
+    get:
+      operationId: shop_products_list
+      summary: Retrieves the list with all the products in the store.
+      description: '*'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+        - shop
+    parameters: []
+  /shop/products/new/:
+    post:
+      operationId: shop_products_new_create
+      summary: Creates a new Product
+      description: '**AUTHENTICATION REQUIRED**'
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+        - shop
+    parameters: []
+definitions:
+  AuthToken:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        readOnly: true
+        minLength: 1
+  User:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      url:
+        title: Url
+        type: string
+        format: uri
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 1
+      email:
+        title: Email address
+        type: string
+        format: email
+        maxLength: 254
+      is_staff:
+        title: Staff status
+        description: Designates whether the user can log into this admin site.
+        type: boolean
+  ItemBasketSer:
+    required:
+      - qty
+    type: object
+    properties:
+      qty:
+        title: Qty
+        type: integer
+        maximum: 2147483647
+        minimum: 0
+      product:
+        required:
+          - name
+          - image
+          - description
+          - price
+          - stock
+          - category
+          - creator
+        type: object
+        properties:
+          id:
+            title: ID
+            type: integer
+            readOnly: true
+          name:
+            title: Name
+            type: string
+            maxLength: 200
+            minLength: 1
+          created:
+            title: Created
+            type: string
+            format: date
+            readOnly: true
+          modified:
+            title: Modified
+            type: string
+            format: date
+            readOnly: true
+          image:
+            title: Image
+            type: string
+            format: uri
+            maxLength: 200
+            minLength: 1
+          description:
+            title: Description
+            type: string
+            maxLength: 2000
+            minLength: 1
+          price:
+            title: Price
+            type: string
+            format: decimal
+          stock:
+            title: Stock
+            type: integer
+            maximum: 2147483647
+            minimum: 0
+          category:
+            title: Category
+            type: integer
+          creator:
+            title: Creator
+            type: integer
+        readOnly: true
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+  Basket:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/ItemBasketSer'
+        readOnly: true
+  ItemBasket:
+    required:
+      - product
+      - qty
+    type: object
+    properties:
+      basket:
+        title: Basket
+        type: string
+        readOnly: true
+      product:
+        title: Product
+        type: integer
+      qty:
+        title: Qty
+        type: integer
+        maximum: 2147483647
+        minimum: 0
+  Category:
+    required:
+      - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        minLength: 1
+  Product:
+    required:
+      - name
+      - image
+      - description
+      - price
+      - stock
+      - category
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      creator:
+        title: Creator
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 200
+        minLength: 1
+      created:
+        title: Created
+        type: string
+        format: date
+        readOnly: true
+      modified:
+        title: Modified
+        type: string
+        format: date
+        readOnly: true
+      image:
+        title: Image
+        type: string
+        format: uri
+        maxLength: 200
+        minLength: 1
+      description:
+        title: Description
+        type: string
+        maxLength: 2000
+        minLength: 1
+      price:
+        title: Price
+        type: string
+        format: decimal
+      stock:
+        title: Stock
+        type: integer
+        maximum: 2147483647
+        minimum: 0
+      category:
+        title: Category
+        type: integer

@@ -68,6 +68,10 @@ SWAGGER_SETTINGS = {
     }
 }
 
+SWAGGER_SETTINGS = {
+   'DEFAULT_INFO': 'api.urls.api_info',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

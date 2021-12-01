@@ -14,7 +14,6 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = "__all__"
 
-
 class ProductSerializer(serializers.ModelSerializer):
     creator = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
 
